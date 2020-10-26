@@ -1,0 +1,22 @@
+
+
+
+
+
+<form  [formGroup]='userForm' (ngSubmit)="updateMultiple()">
+    <div formArrayName="usersFormArray">
+        <div  *ngFor="let c of userForm.get('usersFormArray')['controls'];let j=index" >
+            <div [formGroupName]="j">
+                <input formControlName="email" [checked]='check'(keyup)="change(j,$event.target.checked )">
+                <input formControlName="id" [checked]='check' (keyup)="change(j,$event.target.checked )">
+                <input formControlName="password" [checked]='check' (keyup)="change(j,$event.target.checked)">
+                <input formControlName="name" [checked]='check' (keyup)="change(j,$event.target.checked)">
+                <input type="checkbox" formControlName='check' (change)="onChange(j, $event.target.checked)">
+            </div>
+        </div>
+    </div>
+ 
+</form>
+
+<pre>Form values: {{userForm.value | json}}</pre>
+<pre> values: {{userArray | json}}</pre>
